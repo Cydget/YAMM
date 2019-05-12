@@ -1,0 +1,28 @@
+--style=google #
+--indent-modifiers #
+--indent-switches #
+--indent-cases #
+--indent-continuation=3 #
+--indent-labels #
+--indent-preproc-block #
+--indent-col1-comments #
+--min-conditional-indent=0 #
+--max-continuation-indent=40 #
+--break-blocks #
+--pad-oper #
+--unpad-paren #
+--align-pointer=type #
+--align-reference=type #
+--break-closing-braces #
+#--break-elseifs #
+--add-one-line-braces #
+--attach-return-type #
+--keep-one-line-blocks #
+--break-after-logical #
+--preserve-date #
+--indent=spaces=4 #
+--max-code-length=130 #
+--recursive #
+--suffix=none #
+--exclude=source/upng.cpp
+--exclude=source/upng.h

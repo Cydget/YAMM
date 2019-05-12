@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="source" Database="" Version="10.0.0">
+  <Project Name="source" Path="source.project" Active="Yes"/>
+  <Project Name="MineSweaper" Path="MineSweaper/MineSweaper.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Environment/>
+      <Project Name="source" ConfigName="Debug"/>
+      <Project Name="MineSweaper" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="yes">
+      <Environment/>
+      <Project Name="source" ConfigName="Debug"/>
+      <Project Name="MineSweaper" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>
