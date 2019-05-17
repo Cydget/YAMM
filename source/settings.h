@@ -7,10 +7,13 @@
 #include <cstdint>
 //#include <experimental/filesystem>
 //namespace cppfs = std::filesystem;
+
 #include <iostream>
 #include <string>
+#include "fileUtils.h"
 #include <cmath>//for at least floor
 #include <math.h>// for round()
+
 //#include <time.h>
 #include <string>
 #include <sstream>
@@ -31,9 +34,9 @@ namespace sfs = std::filesystem;
  * for example what if someone changed the list position number and there were doups, or if they deleted a number
  * this can be mitigated via a function that gets next sequential position instead of assuming they are all there
  * */
-void myRecCopy(std::string oldFolder,std::string newFolder);//until fs::filesystem::copy compiles on switch
-void createDirectories(std::string folderPath);
-void copyFile(std::string src, std::string dest);
+//void myRecCopy(std::string oldFolder,std::string newFolder);//until fs::filesystem::copy compiles on switch
+//void createDirectories(std::string folderPath);
+//void copyFile(std::string src, std::string dest);
 
 std::string convertToHexString(uint64_t value);
 bool isValidHexStr(std::string& inputKey);

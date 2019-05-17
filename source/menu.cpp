@@ -99,7 +99,7 @@ void gameSelectMenu::createFsModMenu(){
     
     if(dynamic_cast<gameCard*>(this->ScreenObjects[this->hoveredId])!=nullptr){
         u64 passGameId=dynamic_cast<gameCard*>(ScreenObjects[hoveredId])->gameTitleId;
-        modSelectMenu* modMenu = new modSelectMenu(this,settings::fsModsKey,passGameId);
+        /*modSelectMenu* modMenu = */new modSelectMenu(this,settings::fsModsKey,passGameId);
 //modMenu->menuModType = settings::fsModsKey;
         //modMenu->gameID = dynamic_cast<gameCard*>(ScreenObjects[hoveredId])->gameTitleId;//passGameId;//passGameId;
     }
@@ -109,7 +109,7 @@ void gameSelectMenu::createExeFsModMenu(){
         u64 passGameId=dynamic_cast<gameCard*>(this->ScreenObjects[this->hoveredId])->gameTitleId;
        // modSelectMenu* modMenu = new modSelectMenu(this);
         //modMenu->menuModType = settings::exeModsKey;
-        modSelectMenu* modMenu = new modSelectMenu(this,settings::exeModsKey,passGameId);
+        /*modSelectMenu* modMenu = */new modSelectMenu(this,settings::exeModsKey,passGameId);
            //     modSelectMenu* modMenu = new modSelectMenu(this,settings::exeModsKey,dynamic_cast<gameCard*>(ScreenObjects[hoveredId])->gameTitleId);
 //
   //      modMenu->gameID = dynamic_cast<gameCard*>(ScreenObjects[hoveredId])->gameTitleId;
@@ -181,7 +181,7 @@ void gameSelectMenu::toggleHoveredGameCardScreen(){
     if(dynamic_cast<gameCard*>(ScreenObjects[hoveredId]) != nullptr){
         unsigned int lastKnownGCScrObjId=hoveredId;
         //Move selected GC to the end of the list. This assumes that the GCs are in order. This should be a resonable assumption
-        for(int i=(hoveredId+1);i<ScreenObjects.size();i++){
+        for(unsigned int i=(hoveredId+1);i<ScreenObjects.size();i++){
             if( dynamic_cast<gameCard*>(ScreenObjects[i]) != nullptr  ){
                 if(!(dynamic_cast<gameCard*>(ScreenObjects[i])->isToggleGamecardIcon) ){
                     gameSelectMenu::swapGCs(dynamic_cast<gameCard*>(ScreenObjects[lastKnownGCScrObjId]),dynamic_cast<gameCard*>(ScreenObjects[i]));
@@ -262,7 +262,7 @@ void gameSelectMenu::addHiddenGames(){
     //back to normal stuffs normal stuff
     gameCardCount = 0;
     //add cards for testing
-    size_t intGameCardCount = gSettings::getInstance().main->getVisibleGamesCount();//getGameCardCount();
+    //size_t intGameCardCount = gSettings::getInstance().main->getVisibleGamesCount();//getGameCardCount();
     std::vector<uint64_t> gameCardTitleIdVec =gSettings::getInstance().main->getVectorOfHiddenGames();
 
     for(size_t i = 0; i < gameCardTitleIdVec.size(); ++i) {
@@ -277,7 +277,7 @@ void gameSelectMenu::addHiddenGames(){
 void gameSelectMenu::addVisibleGames(){
     gameCardCount = 0;
     //add cards for testing
-    size_t intGameCardCount = gSettings::getInstance().main->getVisibleGamesCount();//getGameCardCount();
+    //size_t intGameCardCount = gSettings::getInstance().main->getVisibleGamesCount();//getGameCardCount();
     std::vector<uint64_t> gameCardTitleIdVec =gSettings::getInstance().main->getVectorOfVisibleGames();
 
     for(size_t i = 0; i < gameCardTitleIdVec.size(); ++i) {
@@ -333,7 +333,7 @@ void modSelectMenu::addMods(){
     ScreenObjects[ScreenObjects.size() - 1]->pos = mPoint(settingsButton::size, settingsButton::size);
     
     mPoint startPosition(5+modItem::width/2,scr->height-modItem::height/2 - 5);
-    for(int i=0;i<modCount;i++){
+    for(unsigned int i=0;i<modCount;i++){
         modItem* tmp = new modItem();
         gSettings::getInstance().main->getModInfo(gameID,
                                                     menuModType,
@@ -677,7 +677,7 @@ void modSelectMenu::logic() {
 
 void gameSelectMenu::swapGCs(gameCard *oGC,gameCard * nGC){
     gSettings::getInstance().main->swapGameListPosition(oGC->settingsFileArrayPosId,nGC->settingsFileArrayPosId);
-    unsigned int tmpListPosId = oGC->listPosId;
+    //unsigned int tmpListPosId = oGC->listPosId;
     mPoint tmpPos = oGC->pos;
     oGC->pos = nGC->pos;
     nGC->pos = tmpPos;

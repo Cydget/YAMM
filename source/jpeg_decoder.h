@@ -1,3 +1,8 @@
+#if __cplusplus > 199711L
+#define register      // Deprecated in C++11.
+#endif  // #if __cplusplus > 199711L
+//the code above this comment was added to remove warnings
+
 #ifndef INCLUDED_JPEG_DECODER_H
 #define INCLUDED_JPEG_DECODER_H
 

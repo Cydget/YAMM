@@ -103,7 +103,7 @@ std::string getTitleName(u64 titleID) {
         size_t cpdSz;
 
         if(!(rc = nsGetApplicationControlData(1, titleID, &NsACTRDAT, sizeof(NsApplicationControlData), &cpdSz))) {
-            size_t iconSz = cpdSz - sizeof(NsACTRDAT.nacp);
+          //  size_t iconSz = cpdSz - sizeof(NsACTRDAT.nacp);
 
             if(cpdSz < sizeof(NsACTRDAT.nacp)) {
                 rc = 1;
@@ -132,10 +132,10 @@ std::string getTitleName(u64 titleID) {
 
 
 Result importJpeg(FsStorageId fsStoId, u64 titleID, char* bufout, size_t& bufSz) {
-
+    //unused, becuase I dont think it works when romfs is open before hand, or maybe it needs it to be open afterwards. I believe this would allow compatibility with old systems 1.0.0 before they used the new method.
     Result rc = 1;
     //return rc;
-    size_t bufSzBefore = bufSz ;
+    //size_t bufSzBefore = bufSz ;
     bufSz = 0;
 
     if((rc = fsInitialize())) {

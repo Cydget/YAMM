@@ -56,6 +56,7 @@ std::string getRelativePath(std::string path, std::string basePath){
     
     return ret;
 }
+/*
 void createDirectories(std::string folderPath){
     std::string buildingPath="";
     std::string delim="/";
@@ -100,7 +101,7 @@ void myRecCopy(std::string oldFolder,std::string newFolder){
     }    
     
 }
-
+*/
 
 settings::settings(std::string file):filePath(file){
     settingsFile.loadFile(filePath);
@@ -203,7 +204,7 @@ void settings::getModInfo(uint64_t gameId, std::string modTypeKey,int slotPositi
             (settingsFile.data->key(gamesKey))
             )->key(convertToHexString(gameId)))->key(modTypeKey));
             
-        if(slotPosition<jsonModArrayPtr->value.size()){
+        if(slotPosition< static_cast<int>(jsonModArrayPtr->value.size())){
             if(dynamic_cast<jsonDataTypeObject*>(jsonModArrayPtr->value[slotPosition])!=nullptr && dynamic_cast<jsonDataTypeObject*>(jsonModArrayPtr->value[slotPosition])->type == J_OBJECT ){
                 jsonDataTypeObject* jsonModObjPtr = dynamic_cast<jsonDataTypeObject*>(jsonModArrayPtr->value[slotPosition]);
                 modName       = settings::getModJsonString(jsonModObjPtr,modNameKey);//not sure if this will work as function was orriginaly made for import json objects
@@ -304,7 +305,7 @@ int settings::verifyGames(int run){
             delete settingsFile.data->key(gamesKey);
             jsonDataTypeObject tmp;
             settingsFile.data->pushBack(gamesKey, &tmp);
-            jsonDataTypeObject* jsonGameObjPtr = dynamic_cast<jsonDataTypeObject*>(settingsFile.data->key(gamesKey));
+            jsonGameObjPtr = dynamic_cast<jsonDataTypeObject*>(settingsFile.data->key(gamesKey));
         }
         
         if(!jsonGameObjPtr->value.empty()){
@@ -655,7 +656,7 @@ int settings::importMod(std::string modJsonFilePath,uint64_t gameID,std::string 
 //        return 0;
         //iconName ="default";
         if(iconName!="default"){
-            bool contin=false;
+            //bool contin=false;
             createDirectories(settings::iconFolder);
 //            sfs::create_directories();
             while(sfs::exists(settings::iconFolder+newIconName+std::to_string(iconEnding)+".jpg")){
@@ -868,7 +869,7 @@ int settings::swapModPositions(uint64_t gameID,std::string modTypeKey,int positi
                 else if(selectedModPos==position2){setSelectedModPos(gameID,((modTypeKey==fsModsKey)?settings::gameSelectedLayerdFsModKey:settings::gameSelectedLayerdExeModKey),position1);}
             
                 
-            if(jsonModArrayPtr->value.size()>position1 && jsonModArrayPtr->value.size()>position2){
+            if(static_cast<int>(jsonModArrayPtr->value.size())>position1 && static_cast<int>(jsonModArrayPtr->value.size())>position2){
                 std::swap(jsonModArrayPtr->value[position1],jsonModArrayPtr->value[position2]);
                 return 0;
             }
@@ -910,7 +911,7 @@ int settings::removeMod(uint64_t gameID,std::string modTypeKey,int position){
                 (settingsFile.data->key(gamesKey))
                 )->key(convertToHexString(gameID)))->key(modTypeKey));
                 
-                if(jsonModArrayPtr->value.size()>position){
+                if(static_cast<int>(jsonModArrayPtr->value.size())>position){
                     //one more if for if it is currently selected
                     
                     
@@ -994,7 +995,7 @@ int settings::loadMod(uint64_t gameID,std::string modTypeKey,int position){
                 (settingsFile.data->key(gamesKey))
                 )->key(convertToHexString(gameID)))->key(modTypeKey));
 
-                if((jsonModArrayPtr->value.size()>position)||(position==-1)){
+                if((static_cast<int>(jsonModArrayPtr->value.size())>position)||(position==-1)){
                     double currentSelectedModPos = getSelectedModPos(gameID,((modTypeKey==fsModsKey)?settings::gameSelectedLayerdFsModKey:settings::gameSelectedLayerdExeModKey));
                     std::string modFolderLoadFolder = getfsMitmTitlePath() +convertToHexString(gameID)+"/"+((modTypeKey==fsModsKey)?"romfs/":"exefs/");
                     //std::string fpath="/notARealLocation/";
